@@ -13,9 +13,9 @@ public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
 
 
-    ObjektBokning.addObjekt("Kanot");
-    ObjektBokning.addObjekt("Vattenskoter");
-    ObjektBokning.addObjekt("SUP"); // duplicering
+    ObjectBokning.addObject("Kanot");
+    ObjectBokning.addObject("Vattenskoter");
+    ObjectBokning.addObject("SUP"); // duplicering
 
     int choice = 0;
     boolean running = true;
@@ -37,21 +37,21 @@ public static void main(String[] args) {
 
         if (choice == 1)
         {
-            ObjektBokning.showObjekt();
+            ObjectBokning.showObject();
         }
 
         else if (choice == 2)
         {
             System.out.print("Vattenutrustning att välja på: ");
             String objekt = scanner.nextLine();
-            ObjektBokning.bookObjekt(objekt);
+            ObjectBokning.bookObject(objekt);
         }
 
         else if (choice == 3)
         {
             System.out.print("Ny vattenutrustning: ");
             String objekt = scanner.nextLine();
-            ObjektBokning.addObjekt(objekt);
+            ObjectBokning.addObject(objekt);
         }
         else if (choice == 4)
         {
