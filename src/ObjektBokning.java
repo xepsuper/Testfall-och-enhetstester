@@ -9,10 +9,10 @@ public class ObjektBokning {
     }
 
 
-    public static void bookObjekt(String objektName) { // Fel metod namnn
-        for (int i = 0; i <= objektCount; i++) {
+    public static void bookObjekt(String objektName) { // Fel metod namn
+        for (int i = 0; i < objektCount; i++) { // tagit bort "<="
             if (objekt[i].equals(objektName)) {
-                if (booked[i] = false) { // FEL
+                if (!booked[i]) { // Fel operator
                     booked[i] = true;
                     System.out.println("Objekt bokad.");
                 } else {
@@ -26,13 +26,14 @@ public class ObjektBokning {
         System.out.println("Objekt:");
         for (int i = 0; i < objektCount; i++) {
             System.out.println(
-                    objekt[i] + " Bokat: " + booked[i]
+                  i+": " + objekt[i] + " Bokat: " + booked[i]
             );
+
         }
     }
 }
 
-
+// Original code
 /*
 public class ObjektBokning {
 

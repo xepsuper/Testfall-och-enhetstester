@@ -17,10 +17,11 @@ public static void main(String[] args) {
     ObjektBokning.addObjekt("SUP"); // duplicering
 
     int choice = 0;
-    while (choice != 2) {
+    while (choice != 2) // Det ska vara 4 inte 2.
+        {
 
-        System.out.println("\n1. Vilket vattenutrudtning vill du visa information om?");
-        System.out.println("2. Vilken vattenutrudtning vill du boka?");
+        System.out.println("\n1. Vilket vattenutrudtning vill du visa information om?"); // Fel stavning
+        System.out.println("2. Vilken vattenutrudtning vill du boka?"); // Fel stavning
         System.out.println("2. Lägg till ny vattenutrustning");
         System.out.println("4. Avsluta");
 
@@ -32,7 +33,9 @@ public static void main(String[] args) {
         else if (choice == 2) {
             System.out.print("Vattenutrustning att välja på: ");
             String objekt = scanner.nextLine();
-            ObjektBokning.bookObjekt(objekt); }
+            ObjektBokning.bookObjekt(objekt);
+
+        }
         else if (choice == 3) {
 
             System.out.print("Ny vattenutrustning: ");
@@ -40,6 +43,7 @@ public static void main(String[] args) {
 
             ObjektBokning.addObjekt(objekt);
         }
+
     }
 
     scanner.close();
@@ -49,7 +53,7 @@ public static void main(String[] args) {
 
 
 
-
+// Original code
 /*
 import java.util.Scanner;
 
