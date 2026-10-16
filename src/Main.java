@@ -12,7 +12,9 @@ public static void main(String[] args) {
 
     Scanner scanner = new Scanner(System.in);
 
-    addObjekt("Kanot"); addObjekt("Vattenskoter");addObjekt("SUP");
+    addObjekt("Kanot");
+    addObjekt("Vattenskoter");
+    addObjekt("SUP"); // duplicering
 
     int choice = 0;
     while (choice != 2) {
@@ -25,10 +27,12 @@ public static void main(String[] args) {
         choice = scanner.nextInt();
         scanner.nextLine();
 
-        if (choice == 1) {showObjekt();} else if (choice == 2) {
+        if (choice == 1) {showObjekt();}
+        else if (choice == 2) {
             System.out.print("Vattenutrustning att välja på: ");
             String objekt = scanner.nextLine();
-            bookObjekt(objekt); } else if (choice == 3) {
+            bookObjekt(objekt); }
+        else if (choice == 3) {
 
             System.out.print("Ny vattenutrustning: ");
             String objekt = scanner.nextLine();

@@ -1,15 +1,27 @@
-public class ObjektBokning { static String[] objekt = new String[10];
+public class ObjektBokning {
+    static String[] objekt = new String[10];// array out of bounds
     static boolean[] booked = new boolean[10];
     static int ObjektCount = 0;
+
     public static void addObjekt(String objektName) {
         objekt[objektCount] = objektName;
         objektCount++;
     }
-    public static void bookObjektString objektName) {
-        for (int i = 0; i <= objektCount; i++) {if (objekt[i].equals(objektName)) { if (booked[i] = false) { // FEL
-            booked[i] = true; System.out.println("Objekt bokad.");}
-        else {System.out.println("Objektet är redan bokad.");}
-        }}}
+
+
+    public static void bookObjektString(String objektName) { // Fel metod namnn
+        for (int i = 0; i <= objektCount; i++) {
+            if (objekt[i].equals(objektName)) {
+                if (booked[i] = false) { // FEL
+                    booked[i] = true;
+                    System.out.println("Objekt bokad.");
+                } else {
+                    System.out.println("Objektet är redan bokad.");
+                }
+            }
+        }
+    }
+
     public static void showObjekt() {
         System.out.println("Objekt:");
         for (int i = 0; i < objektCount; i++) {
@@ -18,6 +30,7 @@ public class ObjektBokning { static String[] objekt = new String[10];
             );
         }
     }
+}
 
 
 /*
