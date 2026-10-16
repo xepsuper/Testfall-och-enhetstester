@@ -1,7 +1,7 @@
 public class ObjektBokning {
     static String[] objekt = new String[10];// array out of bounds
     static boolean[] booked = new boolean[10];
-    static int ObjektCount = 0;
+    static int objektCount = 0;
 
     public static void addObjekt(String objektName) {
         objekt[objektCount] = objektName;
@@ -9,7 +9,7 @@ public class ObjektBokning {
     }
 
 
-    public static void bookObjektString(String objektName) { // Fel metod namnn
+    public static void bookObjekt(String objektName) { // Fel metod namnn
         for (int i = 0; i <= objektCount; i++) {
             if (objekt[i].equals(objektName)) {
                 if (booked[i] = false) { // FEL
