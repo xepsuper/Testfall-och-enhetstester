@@ -4,10 +4,11 @@ public class ObjektBokning {
     static int objektCount = 0;
 
     public static void addObjekt(String objektName) {
-        objekt[objektCount] = objektName;
-        objektCount++;
+        if (objektCount > 10){
+            objekt[objektCount] = objektName;
+            objektCount++;
+        }
     }
-
 
     public static void bookObjekt(String objektName) { // Fel metod namn
         for (int i = 0; i < objektCount; i++) { // tagit bort "<="
@@ -28,7 +29,6 @@ public class ObjektBokning {
             System.out.println(
                   i+": " + objekt[i] + " Bokat: " + booked[i]
             );
-
         }
     }
 }
