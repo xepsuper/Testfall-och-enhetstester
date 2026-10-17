@@ -4,7 +4,7 @@ public class ObjectBokning {
     static int objektCount = 0;
 
     public static void addObject(String objektName) {
-        if (objektCount > 10){
+        if (objektCount < 10){
             objekt[objektCount] = objektName;
             objektCount++;
         }
