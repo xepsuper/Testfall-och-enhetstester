@@ -18,7 +18,7 @@ class ObjectBokningTest {
     void getObjekt(){
         String[] ObjektTest = ObjectBokning.objektLista;
         String objektTest = ObjectBokning.objektLista[2];
-        boolean objektBookedTest = ObjectBokning.booked[2];
+        boolean objektBookedTest = ObjectBokning.bookedList[2];
 
         assertEquals("SUP", objektTest);
     }

@@ -67,7 +67,7 @@ public static void main(String[] args) {
                 System.out.println("Välj endast nummer.");
                 return;
             }
-            System.out.println("\n"+ObjectBokning.getNumberOfObjekt(objektChoice));
+            System.out.println("\n"+ObjectBokning.getSpecificObject(objektChoice));
 
         }
         else if (choice == 5){

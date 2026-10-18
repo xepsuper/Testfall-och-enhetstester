@@ -1,6 +1,6 @@
 public class ObjectBokning {
     static String[] objektLista = new String[10];// array out of bounds
-    static boolean[] booked = new boolean[10];
+    static boolean[] bookedList = new boolean[10];
     static int objektCount = 0;
 
     public static void addObject(String objektName) {
@@ -13,8 +13,8 @@ public class ObjectBokning {
     public static void bookObject(String objektName) { // Fel metod namn
         for (int i = 0; i < objektCount; i++) { // tagit bort "<="
             if (objektLista[i].equals(objektName)) {
-                if (!booked[i]) { // Fel operator
-                    booked[i] = true;
+                if (!bookedList[i]) { // Fel operator
+                    bookedList[i] = true;
                     System.out.println("Objekt bokad.");
                 } else {
                     System.out.println("Objektet är redan bokad.");
@@ -27,11 +27,11 @@ public class ObjectBokning {
         System.out.println("Objekt:");
         for (int i = 0; i < objektCount; i++) {
             System.out.println(
-                  i+1+": " + objektLista[i] + " Bokat: " + booked[i]
+                  i+1+": " + objektLista[i] + " Bokat: " + bookedList[i]
             );
         }
     }
-    public static String getNumberOfObjekt(int choice){
+    public static String getSpecificObject(int choice){
         String newObjekt = null;
         choice -= 1;
         if (choice < objektCount && choice > -1){
@@ -41,6 +41,14 @@ public class ObjectBokning {
             newObjekt = "Finns inte objekt";
         }
         return newObjekt;
+    }
+    public static boolean checkBookObject(int choice){
+        boolean newBookedObject = false;
+        choice -=1;
+        if (choice < objektCount && choice > -1){
+            newBookedObject = bookedList[choice];
+        }
+              return newBookedObject;
     }
 }
 
