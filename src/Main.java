@@ -26,13 +26,15 @@ public static void main(String[] args) {
         System.out.println("\n1. Vilket Vattenutrustning vill du visa information om?");
         System.out.println("2. Vilken Vattenutrustning vill du boka?");
         System.out.println("3. Lägg till ny vattenutrustning");
-        System.out.println("4. Avsluta");
+        System.out.println("4. Välja en specifik vattenutrustning");
+        System.out.println("5. Avsluta");
 
         try{ //
             choice = scanner.nextInt();
             scanner.nextLine();
         }catch(Exception e){
-            choice = 4;
+            System.out.println("Välj endast nummer.");
+            return;
         }
 
 
@@ -44,18 +46,31 @@ public static void main(String[] args) {
         else if (choice == 2)
         {
             System.out.print("Vattenutrustning att välja på: ");
-            String objekt = scanner.nextLine();
-            ObjectBokning.bookObject(objekt);
+            String objektChoice = scanner.nextLine();
+            ObjectBokning.bookObject(objektChoice);
         }
 
         else if (choice == 3)
         {
             System.out.print("Ny vattenutrustning: ");
-            String objekt = scanner.nextLine();
-            ObjectBokning.addObject(objekt);
+            String objektChoice = scanner.nextLine();
+            ObjectBokning.addObject(objektChoice);
         }
         else if (choice == 4)
         {
+            System.out.println("Välj från det som finns här:");
+            ObjectBokning.showObject();
+            int objektChoice;
+            try{
+                objektChoice = scanner.nextInt();
+            }catch(Exception e){
+                System.out.println("Välj endast nummer.");
+                return;
+            }
+            System.out.println("\n"+ObjectBokning.getNumberOfObjekt(objektChoice));
+
+        }
+        else if (choice == 5){
             System.out.println("Programmet stängs");
             scanner.close();
             running = false;

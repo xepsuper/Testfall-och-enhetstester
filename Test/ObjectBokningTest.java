@@ -11,12 +11,17 @@ class ObjectBokningTest {
         ObjectBokning.addObject("Kanot");
         ObjectBokning.addObject("Vattenskoter");
         ObjectBokning.addObject("SUP"); // duplicering
+        ObjectBokning.bookObject("SUP");
 
     }
     @Test
     void getObjekt(){
-        String objektTest = ObjectBokning.objekt[1];
+        String[] ObjektTest = ObjectBokning.objekt;
+        String objektTest = ObjectBokning.objekt[2];
+        boolean objektBookedTest = ObjectBokning.booked[2];
 
         assertEquals("SUP", objektTest);
     }
+
+
 }

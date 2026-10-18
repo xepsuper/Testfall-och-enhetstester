@@ -27,9 +27,20 @@ public class ObjectBokning {
         System.out.println("Objekt:");
         for (int i = 0; i < objektCount; i++) {
             System.out.println(
-                  i+": " + objekt[i] + " Bokat: " + booked[i]
+                  i+1+": " + objekt[i] + " Bokat: " + booked[i]
             );
         }
+    }
+    public static String getNumberOfObjekt(int choice){
+        String newObjekt = null;
+        choice -= 1;
+        if (choice < objektCount && choice > -1){
+            newObjekt = objekt[choice];
+        }
+        else{
+            newObjekt = "Finns inte objekt";
+        }
+        return newObjekt;
     }
 }
 
