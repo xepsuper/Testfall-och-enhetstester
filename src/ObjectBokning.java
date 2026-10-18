@@ -1,18 +1,18 @@
 public class ObjectBokning {
-    static String[] objekt = new String[10];// array out of bounds
+    static String[] objektLista = new String[10];// array out of bounds
     static boolean[] booked = new boolean[10];
     static int objektCount = 0;
 
     public static void addObject(String objektName) {
         if (objektCount < 10){
-            objekt[objektCount] = objektName;
+            objektLista[objektCount] = objektName;
             objektCount++;
         }
     }
 
     public static void bookObject(String objektName) { // Fel metod namn
         for (int i = 0; i < objektCount; i++) { // tagit bort "<="
-            if (objekt[i].equals(objektName)) {
+            if (objektLista[i].equals(objektName)) {
                 if (!booked[i]) { // Fel operator
                     booked[i] = true;
                     System.out.println("Objekt bokad.");
@@ -27,7 +27,7 @@ public class ObjectBokning {
         System.out.println("Objekt:");
         for (int i = 0; i < objektCount; i++) {
             System.out.println(
-                  i+1+": " + objekt[i] + " Bokat: " + booked[i]
+                  i+1+": " + objektLista[i] + " Bokat: " + booked[i]
             );
         }
     }
@@ -35,7 +35,7 @@ public class ObjectBokning {
         String newObjekt = null;
         choice -= 1;
         if (choice < objektCount && choice > -1){
-            newObjekt = objekt[choice];
+            newObjekt = objektLista[choice];
         }
         else{
             newObjekt = "Finns inte objekt";

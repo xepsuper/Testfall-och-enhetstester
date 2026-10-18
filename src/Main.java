@@ -17,7 +17,7 @@ public static void main(String[] args) {
     ObjectBokning.addObject("Vattenskoter");
     ObjectBokning.addObject("SUP"); // duplicering
 
-    System.out.println(ObjectBokning.objekt[2]);
+    System.out.println(ObjectBokning.objektLista[2]);
     int choice = 0;
     boolean running = true;
     while (running)
