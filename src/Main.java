@@ -8,6 +8,10 @@
 
 import java.util.Scanner;
 
+/**
+ * Main, används för att skriva ut och köra systemet
+ * @param args
+ */
 public static void main(String[] args) {
 
     Scanner scanner = new Scanner(System.in);

@@ -1,3 +1,7 @@
+/**
+ * Konstruktor för klassen
+ * Skapar specifika attributer och variabler för att få en mall för objektListan
+ */
 public class ObjectConstructor {
     private String object;
     private boolean booked;

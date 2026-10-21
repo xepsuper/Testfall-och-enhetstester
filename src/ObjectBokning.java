@@ -1,5 +1,12 @@
+import java.util.ArrayList;
+
+/**
+ * Samling av alla metoder
+ * Skapar logiken här där nya algoritmer och metoder samlas
+ */
 public class ObjectBokning {
-    static ObjectConstructor[] objectListTest = new ObjectConstructor[10];
+    static ArrayList<ObjectConstructor> objectList = new ArrayList<>();
+
     private static int objectCount = 0;
 
 
@@ -9,7 +16,7 @@ public class ObjectBokning {
      */
     public static void addObject(String object) {
         if (objectCount < 10) {
-            objectListTest[objectCount] = new ObjectConstructor(object, false);
+            objectList.add(new ObjectConstructor(object, false));
             objectCount++;
         }
     }
@@ -20,24 +27,21 @@ public class ObjectBokning {
     public static void showObject() {
         System.out.println("Objekt:");
         for (int i = 0; i < objectCount; i++) {
-            System.out.println(i + 1 + ": " + objectListTest[i].getObject() + " Bokat: " + objectListTest[i].isBooked()
+            System.out.println(i + 1 + ": " + objectList.get(i).getObject() + " Bokat: " + objectList.get(i).isBooked()
             );
         }
     }
 
 
-
     /**
      * getSpecificObjekt() används för att leta efter en specifik objekt
-     *
-     * @param choice Nummer som man väljer objekt för
-     * @return Returnerar en string som hänvisar en objekt utifrån objektList
+     * @param choice välja mellan objekt enligt objektlistan
      */
     public static void getSpecificObject(int choice) {
         ObjectConstructor newObjekt = null;
         choice -= 1;
         if (choice < objectCount && choice > -1) {
-            newObjekt = objectListTest[choice];
+            newObjekt = objectList.get(choice);
         } else {
             System.out.println("Finns inga objekt");
         }
@@ -53,9 +57,9 @@ public class ObjectBokning {
      */
     public static void bookObject(String objektName) { // Fel metod namn
         for (int i = 0; i < objectCount; i++) { // tagit bort "<="
-            if (objectListTest[i].getObject().equals(objektName)) {
-                if (!objectListTest[i].isBooked()) { // Fel operator
-                    objectListTest[i].setBooked(true);;
+            if (objectList.get(i).getObject().equals(objektName)) {
+                if (!objectList.get(i).isBooked()) { // Fel operator
+                    objectList.set(i, new ObjectConstructor(objektName, true));
                     System.out.println("Objekt bokad.");
                 } else {
                     System.out.println("Objektet är redan bokad.");
