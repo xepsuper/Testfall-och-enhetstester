@@ -17,7 +17,6 @@ public static void main(String[] args) {
     ObjectBokning.addObject("Vattenskoter");
     ObjectBokning.addObject("SUP"); // duplicering
 
-    System.out.println(ObjectBokning.objektLista[2]);
     int choice = 0;
     boolean running = true;
     while (running)
@@ -29,7 +28,12 @@ public static void main(String[] args) {
         System.out.println("4. Välja en specifik vattenutrustning");
         System.out.println("5. Avsluta");
 
-        try{ //
+        /* Kollar för eventuella error som kan komma upp.
+        Som till exempel nextInt() hämta endast nummer.
+        Det används främst för felhantering och undvika att krascha koden.
+        */
+
+        try{
             choice = scanner.nextInt();
             scanner.nextLine();
         }catch(Exception e){
@@ -48,6 +52,7 @@ public static void main(String[] args) {
             System.out.print("Vattenutrustning att välja på: ");
             String objektChoice = scanner.nextLine();
             ObjectBokning.bookObject(objektChoice);
+
         }
 
         else if (choice == 3)
@@ -61,13 +66,18 @@ public static void main(String[] args) {
             System.out.println("Välj från det som finns här:");
             ObjectBokning.showObject();
             int objektChoice;
+
+            /* Kollar för eventuella error som kan komma upp.
+              Som till exempel nextInt() hämta endast nummer.
+               Det används främst för felhantering och undvika att krascha koden.
+            */
             try{
                 objektChoice = scanner.nextInt();
             }catch(Exception e){
                 System.out.println("Välj endast nummer.");
                 return;
             }
-            System.out.println("\n"+ObjectBokning.getSpecificObject(objektChoice));
+            ObjectBokning.getSpecificObject(objektChoice);
 
         }
         else if (choice == 5){
@@ -78,6 +88,7 @@ public static void main(String[] args) {
         else {
             System.out.println("Lägga till rätt nummer från 1 till 4.");
         }
+
     }
 
 

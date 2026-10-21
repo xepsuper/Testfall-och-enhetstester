@@ -1,20 +1,61 @@
 public class ObjectBokning {
-    static String[] objektLista = new String[10];// array out of bounds
-    static boolean[] bookedList = new boolean[10];
-    static int objektCount = 0;
+    static ObjectConstructor[] objectListTest = new ObjectConstructor[10];
+    private static int objectCount = 0;
 
-    public static void addObject(String objektName) {
-        if (objektCount < 10){
-            objektLista[objektCount] = objektName;
-            objektCount++;
+
+    /**
+     * Skapar nya objekt som hämtar in objekt och boolean samtidig
+     * @param object Indata för objekt
+     */
+    public static void addObject(String object) {
+        if (objectCount < 10) {
+            objectListTest[objectCount] = new ObjectConstructor(object, false);
+            objectCount++;
         }
     }
 
+    /**
+     * ShowObject() returnerar en hel lista av objekt i tur ordning
+     */
+    public static void showObject() {
+        System.out.println("Objekt:");
+        for (int i = 0; i < objectCount; i++) {
+            System.out.println(i + 1 + ": " + objectListTest[i].getObject() + " Bokat: " + objectListTest[i].isBooked()
+            );
+        }
+    }
+
+
+
+    /**
+     * getSpecificObjekt() används för att leta efter en specifik objekt
+     *
+     * @param choice Nummer som man väljer objekt för
+     * @return Returnerar en string som hänvisar en objekt utifrån objektList
+     */
+    public static void getSpecificObject(int choice) {
+        ObjectConstructor newObjekt = null;
+        choice -= 1;
+        if (choice < objectCount && choice > -1) {
+            newObjekt = objectListTest[choice];
+        } else {
+            System.out.println("Finns inga objekt");
+        }
+        System.out.println("Objekt: " + newObjekt.getObject() + " bokning: " + newObjekt.isBooked());
+    }
+
+    /**
+     * bookObject() kollar efter om objektet är bokat
+     * Om inte bookObject() kommer att boka den
+     * Om det är redan bokat bookObject() kommer att skriva att det är redan bokat
+     *
+     * @param objektName Objektet som skrivs in
+     */
     public static void bookObject(String objektName) { // Fel metod namn
-        for (int i = 0; i < objektCount; i++) { // tagit bort "<="
-            if (objektLista[i].equals(objektName)) {
-                if (!bookedList[i]) { // Fel operator
-                    bookedList[i] = true;
+        for (int i = 0; i < objectCount; i++) { // tagit bort "<="
+            if (objectListTest[i].getObject().equals(objektName)) {
+                if (!objectListTest[i].isBooked()) { // Fel operator
+                    objectListTest[i].setBooked(true);;
                     System.out.println("Objekt bokad.");
                 } else {
                     System.out.println("Objektet är redan bokad.");
@@ -22,35 +63,13 @@ public class ObjectBokning {
             }
         }
     }
-
-    public static void showObject() {
-        System.out.println("Objekt:");
-        for (int i = 0; i < objektCount; i++) {
-            System.out.println(
-                  i+1+": " + objektLista[i] + " Bokat: " + bookedList[i]
-            );
-        }
-    }
-    public static String getSpecificObject(int choice){
-        String newObjekt = null;
-        choice -= 1;
-        if (choice < objektCount && choice > -1){
-            newObjekt = objektLista[choice];
-        }
-        else{
-            newObjekt = "Finns inte objekt";
-        }
-        return newObjekt;
-    }
-    public static boolean checkBookObject(int choice){
-        boolean newBookedObject = false;
-        choice -=1;
-        if (choice < objektCount && choice > -1){
-            newBookedObject = bookedList[choice];
-        }
-              return newBookedObject;
-    }
 }
+
+
+
+
+
+
 
 // Original code
 /*
