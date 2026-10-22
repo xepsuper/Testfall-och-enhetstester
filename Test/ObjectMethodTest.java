@@ -111,7 +111,7 @@ class ObjectMethodTest {
     /**
      * Här testas getSpecificObject()
      * Om det kan hitta värde som inte finns
-     * Kan det hitta "Kanot" om man skriver istället "SUP"?
+     * Kan det hitta "Test" som egentligen inte finns i tabellen?
      */
     @Test
     void TC09()
