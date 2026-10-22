@@ -2,7 +2,7 @@
  * Konstruktor för klassen
  * Skapar specifika attributer och variabler för att få en mall för objektListan
  */
-public class ObjectConstructor {
+public class Vattenutrustning {
     private String object;
     private boolean booked;
 
@@ -12,7 +12,7 @@ public class ObjectConstructor {
      * @param object Använder objekt som variabeltyp string
      * @param booked Använder bokningar som variabeltyp boolean
      */
-    public ObjectConstructor(String object, boolean booked){
+    public Vattenutrustning(String object, boolean booked){
         this.object = object;
         this.booked = booked;
     }

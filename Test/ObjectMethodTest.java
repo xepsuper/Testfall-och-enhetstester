@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.*;
-import java.awt.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -9,53 +8,58 @@ import static org.junit.jupiter.api.Assertions.*;
  * Testar om alla metoder gör som det ska
  * Kommer det negativa eller positiva tester?
  */
-class ObjectBokningTest {
+class ObjectMethodTest {
 
     @BeforeEach
     void setUp()
     {
-        ObjectBokning.bookObject("Kanot");
-        ObjectBokning.addObject("Kanot");
-        ObjectBokning.addObject("Vattenskoter");
-        ObjectBokning.addObject("SUP");
+        ObjectMethod.bookObject("Kanot");
+        ObjectMethod.addObject("Kanot");
+        ObjectMethod.addObject("Vattenskoter");
+        ObjectMethod.addObject("SUP");
     }
     /**
      * Här testas addObject() om det kontrollerar och det läggs till
      */
     @Test
-    void TC04()
+    void TC01()
     {
-        ObjectBokning.addObject("Test");
-        /*
-        Ändra mellan
-        getObject()
-        isbooked()
-        för att ändra mellan bokning och getObject
-         */
-        var result = ObjectBokning.objectList.getFirst().getObject(); //<-- Ändra i slutet av raden
-        var expected = "Test"; //<-- Ändra här för att få rätt resultat
+        ObjectMethod.addObject("Test");
+
+        var result = ObjectMethod.objectList.getLast().getObject();
+        var expected = "Test";
         assertEquals(expected, result);
     }
+@Test
+    /**
+     * Här testas getNumberOfObject(), det hämtar ut hur många objekt som finns i objektlistan
+     */
+    void TCO2(){
+        int result = ObjectMethod.getNumberOfObject();
+        int expected = 0;
+        assertEquals(expected,result);
+    }
+
     /**
      * Här testas showObject() om det skriver in en hel lista av objekt
      */
     @Test
-    void TC05()
+    void TC03()
     {
-        ObjectBokning.showObject();
+        ObjectMethod.showObject();
 
-        var result = ObjectBokning.objectList.getFirst().getObject();
+        var result = ObjectMethod.objectList.getFirst().getObject();
         var expected = "Kanot";
         assertEquals(expected, result);
     }
     /**
-     * Här testas bookObject() om vilket bokar på dessa objekt
+     * Här testas bookObject() om vilket objekt bokas
      */
     @Test
-    void TC06()
+    void TC04()
     {
-        ObjectBokning.bookObject("SUP");
-        var result = ObjectBokning.objectList.getLast().isBooked();
+        ObjectMethod.bookObject("SUP");
+        var result = ObjectMethod.objectList.getLast().isBooked();
         var expected = true;
         assertEquals(expected,result);
     }
@@ -63,9 +67,9 @@ class ObjectBokningTest {
      * Här testas getSpecificObject() om det hämtar fram en specifik objekt
      */
     @Test
-    void TC07()
+    void TC05()
     {
-        String result = ObjectBokning.getSpecificObject("SUP").getObject();
+        String result = ObjectMethod.getSpecificObject("SUP").getObject();
         String expected = "SUP";
         assertEquals(expected, result);
     }
@@ -73,9 +77,9 @@ class ObjectBokningTest {
      * Här testas changeObject() om det ändrar namn på ett specifikt objekt
      */
     @Test
-    void TC08()
+    void TC06()
     {
-        String result = ObjectBokning.changeObject("SUP", "HEJ");
+        String result = ObjectMethod.changeObject("SUP", "HEJ");
         String expected = "HEJ";
         assertEquals(expected,result);
     }
@@ -83,11 +87,11 @@ class ObjectBokningTest {
      * Här testas removeObject() om det ta bort ett specifikt objekt
      */
     @Test
-    void TC09()
+    void TC07()
     {
-        ObjectBokning.showObject();
-        ObjectBokning.removeObject(1);
-        String result = ObjectBokning.objectList.getFirst().getObject();
+        ObjectMethod.showObject();
+        ObjectMethod.removeObject(1);
+        String result = ObjectMethod.objectList.getFirst().getObject();
         String expected = "Kanot";
         assertNotEquals(expected,result);
     }
@@ -95,10 +99,10 @@ class ObjectBokningTest {
      * Här testas removeBooking() om det kan avboka ett specifikt objekt
      */
     @Test
-    void TC10()
+    void TC08()
     {
 
-       boolean result = ObjectBokning.removeBooking("Kanot");
+       boolean result = ObjectMethod.removeBooking("Kanot");
        boolean expected = true;
         System.out.println(result);
        assertNotEquals(expected,result);
@@ -110,10 +114,10 @@ class ObjectBokningTest {
      * Kan det hitta "Kanot" om man skriver istället "SUP"?
      */
     @Test
-    void TC11()
+    void TC09()
     {
-                String result = ObjectBokning.getSpecificObject("SUP").getObject();
-                String expected = "Kanot";
+                String result = ObjectMethod.getSpecificObject("Test").getObject();
+                String expected = "Test";
                 assertEquals(expected,result);
 
     }

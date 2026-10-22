@@ -18,9 +18,9 @@ public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
 
 
-    ObjectBokning.addObject("Kanot");
-    ObjectBokning.addObject("Vattenskoter");
-    ObjectBokning.addObject("SUP"); // duplicering
+    ObjectMethod.addObject("Kanot");
+    ObjectMethod.addObject("Vattenskoter");
+    ObjectMethod.addObject("SUP"); // duplicering
 
     int choice = 0;
     boolean running = true;
@@ -47,19 +47,19 @@ public static void main(String[] args) {
 
 
         if (choice == 1) {
-            ObjectBokning.showObject();
+            ObjectMethod.showObject();
         } else if (choice == 2) {
             System.out.print("Vattenutrustning att välja på: ");
             String objektChoice = scanner.nextLine();
-            ObjectBokning.bookObject(objektChoice);
+            ObjectMethod.bookObject(objektChoice);
 
         } else if (choice == 3) {
             System.out.print("Ny vattenutrustning: ");
             String objektChoice = scanner.nextLine();
-            ObjectBokning.addObject(objektChoice);
+            ObjectMethod.addObject(objektChoice);
         } else if (choice == 4) {
             System.out.println("Välj från det som finns här:");
-            ObjectBokning.showObject();
+            ObjectMethod.showObject();
             String objektChoice;
 
             /* Kollar för eventuella error som kan komma upp.
@@ -73,7 +73,7 @@ public static void main(String[] args) {
                 return;
             }
 
-            ObjectConstructor result = ObjectBokning.getSpecificObject(objektChoice);
+            Vattenutrustning result = ObjectMethod.getSpecificObject(objektChoice);
             System.out.println("Objekt: "+result.getObject() + " bokat: " + result.isBooked());
 
         } else if (choice == 5) {

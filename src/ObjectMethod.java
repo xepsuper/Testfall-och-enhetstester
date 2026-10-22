@@ -1,24 +1,23 @@
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Samling av alla metoder
  * Skapar logiken här där nya algoritmer och metoder samlas
  */
-public class ObjectBokning {
-    // Specifika typ-värde hos ObjectConstruktor: Objekt, Bokning (String,
-    static ArrayList<ObjectConstructor> objectList = new ArrayList<>();
+public class ObjectMethod {
+    // Specifika typ-värde hos ObjectConstruktor: Objekt, Bokning (String, boolean)
+    static ArrayList<Vattenutrustning> objectList = new ArrayList<>();
 
     private static int objectCount = 0;
 
 
     /**
      * Skapar nya objekt som hämtar in objekt och boolean samtidig
-     * @param object Indata för objekt
+     * @param objectName Indata för objekt
      */
-    public static void addObject(String object) {
+    public static void addObject(String objectName) {
         if (objectCount < 10) {
-            objectList.add(new ObjectConstructor(object, false));
+            objectList.add(new Vattenutrustning(objectName, false));
             objectCount++;
         }
     }
@@ -37,13 +36,13 @@ public class ObjectBokning {
 
     /**
      * Hämtar ett specifikt objekt från getSpecificObject()
-     * @param objektName Objekt som skrivs in
+     * @param objectName Objekt som skrivs in
      * @return returnerar objekt som man hämtar ut
      */
-    public static ObjectConstructor getSpecificObject(String objektName) {
-        ObjectConstructor object = new ObjectConstructor(null, false);
+    public static Vattenutrustning getSpecificObject(String objectName) {
+        Vattenutrustning object = new Vattenutrustning(null, false);
         for (int i = 0; i < objectCount; i++) { // tagit bort "<="
-            if (objectList.get(i).getObject().equals(objektName)) {
+            if (objectList.get(i).getObject().equals(objectName)) {
                 object = objectList.get(i);
             }
         }
@@ -54,11 +53,11 @@ public class ObjectBokning {
      * bookObject() kollar efter om objektet är bokat
      * Om inte bookObject() kommer att boka den
      * Om det är redan bokat bookObject() kommer att skriva att det är redan bokat
-     * @param objektName Objekt som skrivs in
+     * @param objectName Objekt som skrivs in
      */
-    public static void bookObject(String objektName) { // Fel metod namn
+    public static void bookObject(String objectName) { // Fel metod namn
         for (int i = 0; i < objectCount; i++) {
-            if (objectList.get(i).getObject().equals(objektName)) {
+            if (objectList.get(i).getObject().equals(objectName)) {
                 if (!objectList.get(i).isBooked()) {
                     objectList.get(i).setBooked(true);;
                     System.out.println("Objekt bokad.");
@@ -71,14 +70,14 @@ public class ObjectBokning {
 
     /**
      * Ändrar namnet på specifik objekt och tar bort bokningen efter det ändras
-     * @param objektName Objekt som skrivs in
+     * @param objectName Objekt som skrivs in
      */
-    public static String changeObject(String objektName, String objektNameReplacer){
+    public static String changeObject(String objectName, String objectNameReplacer){
         String objekt = null;
         for (int i = 0; i < objectCount; i++) {
-            if (objectList.get(i).getObject().equals(objektName))  {
-                objectList.set(i, new ObjectConstructor(objektNameReplacer, false));
-                objekt = objektNameReplacer;
+            if (objectList.get(i).getObject().equals(objectName))  {
+                objectList.set(i, new Vattenutrustning(objectNameReplacer, false));
+                objekt = objectNameReplacer;
 
                 System.out.println("Objekt ändrad");
             }
@@ -92,8 +91,9 @@ public class ObjectBokning {
      */
     public static void removeObject(int choice) {
         int newChoice = choice-1;
-        if (newChoice > -1 && newChoice < objectCount){ // 1
+        if (newChoice > -1 && newChoice < objectCount){
             objectList.remove(newChoice);
+            objectCount--;
         }else{
             System.out.println("Välj mellan 1 - " + objectCount);
         }
@@ -114,6 +114,15 @@ public class ObjectBokning {
         }
         return booking;
     }
+
+    /**
+     * Används för att hämta hur många objekt finns i listan
+     * @return Hämtar hur många objekt det finns i objectList
+     */
+    public static int getNumberOfObject(){
+        return objectCount;
+    }
+
 }
 
 
