@@ -1,106 +1,123 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Scanner;
-
+import java.util.*;
+import java.awt.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Här sker alla testfall och enhetstester
+ * Testar om alla metoder gör som det ska
+ * Kommer det negativa eller positiva tester?
+ */
 class ObjectBokningTest {
 
-
     @BeforeEach
-    void setUp() {
-
-            Scanner scanner = new Scanner(System.in);
-
-
-            ObjectBokning.addObject("Kanot");
-            ObjectBokning.addObject("Vattenskoter");
-            ObjectBokning.addObject("SUP"); // duplicering
-
-
-
-            int choice = 0;
-            boolean running = true;
-            while (running)
-            {
-
-                System.out.println("\n1. Vilket Vattenutrustning vill du visa information om?");
-                System.out.println("2. Vilken Vattenutrustning vill du boka?");
-                System.out.println("3. Lägg till ny vattenutrustning");
-                System.out.println("4. Välja en specifik vattenutrustning");
-                System.out.println("5. Avsluta");
-
-        /* Kollar för eventuella error som kan komma upp.
-        Som till exempel nextInt() hämta endast nummer.
-        Det används främst för felhantering och undvika att krascha koden.
-        */
-
-                try{
-                    choice = scanner.nextInt();
-                    scanner.nextLine();
-                }catch(Exception e){
-                    System.out.println("Välj endast nummer.");
-                    return;
-                }
-
-
-                if (choice == 1)
-                {
-                    ObjectBokning.showObject();
-                }
-
-                else if (choice == 2)
-                {
-                    System.out.print("Vattenutrustning att välja på: ");
-                    String objektChoice = scanner.nextLine();
-                    ObjectBokning.bookObject(objektChoice);
-
-                }
-
-                else if (choice == 3)
-                {
-                    System.out.print("Ny vattenutrustning: ");
-                    String objektChoice = scanner.nextLine();
-                    ObjectBokning.addObject(objektChoice);
-                }
-                else if (choice == 4)
-                {
-                    System.out.println("Välj från det som finns här:");
-                    ObjectBokning.showObject();
-                    int objektChoice;
-
-            /* Kollar för eventuella error som kan komma upp.
-              Som till exempel nextInt() hämta endast nummer.
-               Det används främst för felhantering och undvika att krascha koden.
-            */
-                    try{
-                        objektChoice = scanner.nextInt();
-                    }catch(Exception e){
-                        System.out.println("Välj endast nummer.");
-                        return;
-                    }
-                    ObjectBokning.getSpecificObject(objektChoice);
-
-                }
-                else if (choice == 5){
-                    System.out.println("Programmet stängs");
-                    scanner.close();
-                    running = false;
-                }
-                else {
-                    System.out.println("Lägga till rätt nummer från 1 till 4.");
-                }
-
-            }
+    void setUp()
+    {
+        ObjectBokning.bookObject("Kanot");
+        ObjectBokning.addObject("Kanot");
+        ObjectBokning.addObject("Vattenskoter");
+        ObjectBokning.addObject("SUP");
     }
     @Test
     /**
-     *
+     * Här testas addObject() om det kontrollerar och det läggs till
      */
-    void getObjekt(){
+    void TC04()
+    {
+        ObjectBokning.addObject("Test");
+        /*
+        Ändra mellan
+        getObject()
+        isbooked()
+        för att ändra mellan bokning och getObject
+         */
+        var result = ObjectBokning.objectList.getFirst().getObject(); //<-- Ändra i slutet av raden
+        var expected = "Test"; //<-- Ändra här för att få rätt resultat
+        assertEquals(expected, result);
+    }
+    @Test
+    /**
+     * Här testas showObject() om det skriver in en hel lista av objekt
+     */
+    void TC05()
+    {
+        ObjectBokning.showObject();
+
+        var result = ObjectBokning.objectList.getFirst().getObject();
+        var expected = "Kanot";
+        assertEquals(expected, result);
+    }
+    @Test
+    /**
+     * Här testas bookObject() om vilket bokar på dessa objekt
+     */
+    void TC06()
+    {
+        ObjectBokning.bookObject("SUP");
+        var result = ObjectBokning.objectList.getLast().isBooked();
+        var expected = true;
+        assertEquals(expected,result);
+    }
+    @Test
+    /**
+     * Här testas getSpecificObject() om det hämtar fram en specifik objekt
+     */
+    void TC07()
+    {
+        String result = ObjectBokning.getSpecificObject("SUP").getObject();
+        String expected = "SUP";
+        assertEquals(expected, result);
+    }
+    @Test
+    /**
+     * Här testas changeObject() om det ändrar namn på ett specifikt objekt
+     */
+    void TC08()
+    {
+        String result = ObjectBokning.changeObject("SUP", "HEJ");
+        String expected = "HEJ";
+        assertEquals(expected,result);
+    }
+    @Test
+    /**
+     * Här testas removeObject() om det tar bort specifikt objekt
+     */
+    void TC09()
+    {
+        ObjectBokning.showObject();
+        ObjectBokning.removeObject(1);
+        String result = ObjectBokning.objectList.getFirst().getObject();
+        String expected = "Kanot";
+        assertNotEquals(expected,result);
+    }
+    @Test
+    /**
+     * Här testas removeBooking() om det avbokar ett specifikt objekt
+     */
+    void TC10()
+    {
+
+       boolean result = ObjectBokning.removeBooking("Kanot");
+       boolean expected = true;
+        System.out.println(result);
+       assertNotEquals(expected,result);
 
     }
+    @Test
+    /**
+     * Här testas getSpecificObjekt()
+     * Om det kan hitta värde som inte finns
+     * Kan det hitta "Kanot" om man skriver istället "SUP"?
+     */
+    void TC11()
+    {
+                String result = ObjectBokning.getSpecificObject("SUP").getObject();
+                String expected = "Kanot";
+                assertEquals(expected,result);
+
+    }
+
 
 
 }

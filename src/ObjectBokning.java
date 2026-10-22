@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Samling av alla metoder
  * Skapar logiken här där nya algoritmer och metoder samlas
  */
 public class ObjectBokning {
+    // Specifika typ-värde hos ObjectConstruktor: Objekt, Bokning (String,
     static ArrayList<ObjectConstructor> objectList = new ArrayList<>();
 
     private static int objectCount = 0;
@@ -34,38 +36,83 @@ public class ObjectBokning {
 
 
     /**
-     * getSpecificObjekt() används för att leta efter en specifik objekt
-     * @param choice välja mellan objekt enligt objektlistan
+     * Hämtar ett specifikt objekt från getSpecificObject()
+     * @param objektName Objekt som skrivs in
+     * @return returnerar objekt som man hämtar ut
      */
-    public static void getSpecificObject(int choice) {
-        ObjectConstructor newObjekt = null;
-        choice -= 1;
-        if (choice < objectCount && choice > -1) {
-            newObjekt = objectList.get(choice);
-        } else {
-            System.out.println("Finns inga objekt");
+    public static ObjectConstructor getSpecificObject(String objektName) {
+        ObjectConstructor object = new ObjectConstructor(null, false);
+        for (int i = 0; i < objectCount; i++) { // tagit bort "<="
+            if (objectList.get(i).getObject().equals(objektName)) {
+                object = objectList.get(i);
+            }
         }
-        System.out.println("Objekt: " + newObjekt.getObject() + " bokning: " + newObjekt.isBooked());
+        return object;
     }
 
     /**
      * bookObject() kollar efter om objektet är bokat
      * Om inte bookObject() kommer att boka den
      * Om det är redan bokat bookObject() kommer att skriva att det är redan bokat
-     *
-     * @param objektName Objektet som skrivs in
+     * @param objektName Objekt som skrivs in
      */
     public static void bookObject(String objektName) { // Fel metod namn
-        for (int i = 0; i < objectCount; i++) { // tagit bort "<="
+        for (int i = 0; i < objectCount; i++) {
             if (objectList.get(i).getObject().equals(objektName)) {
-                if (!objectList.get(i).isBooked()) { // Fel operator
-                    objectList.set(i, new ObjectConstructor(objektName, true));
+                if (!objectList.get(i).isBooked()) {
+                    objectList.get(i).setBooked(true);;
                     System.out.println("Objekt bokad.");
                 } else {
                     System.out.println("Objektet är redan bokad.");
                 }
             }
         }
+    }
+
+    /**
+     * Ändrar namnet på specifik objekt och tar bort bokningen efter det ändras
+     * @param objektName Objekt som skrivs in
+     */
+    public static String changeObject(String objektName, String objektNameReplacer){
+        String objekt = null;
+        for (int i = 0; i < objectCount; i++) {
+            if (objectList.get(i).getObject().equals(objektName))  {
+                objectList.set(i, new ObjectConstructor(objektNameReplacer, false));
+                objekt = objektNameReplacer;
+
+                System.out.println("Objekt ändrad");
+            }
+        }
+        return objekt;
+    }
+
+    /**
+     * Raderar en objekt efter att numret skrivs in
+     * @param choice nummer skrivs in
+     */
+    public static void removeObject(int choice) {
+        int newChoice = choice-1;
+        if (newChoice > -1 && newChoice < objectCount){ // 1
+            objectList.remove(newChoice);
+        }else{
+            System.out.println("Välj mellan 1 - " + objectCount);
+        }
+
+    }
+
+    /**
+     * avbokar en specifik objekt
+     * @param objektName Objekt som skrivs in
+     */
+    public static boolean removeBooking(String objektName){
+        boolean booking = true;
+        for (int i = 0; i < objectCount; i++) {
+            if (objectList.get(i).getObject().equals(objektName)) {
+                    objectList.get(i).setBooked(false);
+                    booking = objectList.get(i).isBooked();
+            }
+        }
+        return booking;
     }
 }
 
